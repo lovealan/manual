@@ -50,3 +50,4 @@ $datas = $model->select('*', [
 </ul>
 {/function}
 {:mulu($postModel, $manual['id'], 0, $cur_id, $router)}
+<div class="text-muted"><small>最近更新：{:date('Y-m-d H:i:s', $manual['update_time'])}</small></div>

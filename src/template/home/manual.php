@@ -6,6 +6,7 @@
         {include /common/navbar}
     </div>
     <div class="col-md-9">
+        <h1 class="mb-4">{$manual.title}</h1>
         {$manual.body}
     </div>
 </div>
