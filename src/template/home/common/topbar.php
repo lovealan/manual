@@ -1,4 +1,4 @@
 <div class="display-4 my-4 text-secondary">
-    我看起来像广告图片吗
+    你看我像广告吗？
 </div>
 <hr>
