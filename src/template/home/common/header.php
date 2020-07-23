@@ -20,10 +20,6 @@
             background: black;
             padding: 10px;
         }
-
-        code {
-            /* background: #eee; */
-        }
     </style>
 </head>
 
