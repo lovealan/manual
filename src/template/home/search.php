@@ -1,5 +1,5 @@
 {include /common/header}
-{include /common/navbar}
+{include /common/topbar}
 <div class="row">
     <div class="col-md-3">
         {php}$cur_id=0;{/php}
