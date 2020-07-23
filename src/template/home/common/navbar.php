@@ -3,7 +3,7 @@
     <div class="input-group mb-3">
         <input type="text" name="q" value="{:$input->get('q')}" class="form-control" placeholder="请输入搜索词" aria-label="请输入搜索词" aria-describedby="search_btn">
         <div class="input-group-append">
-            <button class="btn btn-warning" type="submit" id="search_btn">搜索</button>
+            <button class="btn btn-primary" type="submit" id="search_btn">搜索</button>
         </div>
     </div>
 </form>
