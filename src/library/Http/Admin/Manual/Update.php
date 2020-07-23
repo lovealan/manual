@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Xielei\Manual\Http\Admin\Manual;
 
 use App\Xielei\Admin\Http\Common;
+use App\Xielei\Manual\Form\Simplemde;
 use App\Xielei\Manual\Model\Manual;
 use Ebcms\Router;
 use Xielei\FormBuilder\Builder;
@@ -14,11 +15,9 @@ use Xielei\FormBuilder\Field\Radio;
 use Xielei\FormBuilder\Field\Text;
 use Xielei\FormBuilder\Field\Textarea;
 use Xielei\FormBuilder\Other\Cover;
-use Xielei\FormBuilder\Other\Summernote;
 use Xielei\FormBuilder\Row;
 use Xielei\FormBuilder\Summary;
 use Xielei\RequestFilter;
-use Xielei\Xss;
 
 class Update extends Common
 {
@@ -36,7 +35,7 @@ class Update extends Common
                 (new Col('col-md-9'))->addItem(
                     (new Hidden('id', $data['id'])),
                     (new Text('手册标题', 'title', $data['title']))->set('help', '一般不超过20个字符')->set('required', 1),
-                    (new Summernote('手册介绍', 'body', $data['body'], $router->buildUrl('/xielei/admin/upload'))),
+                    (new Simplemde('手册介绍', 'body', $data['body'], $router->buildUrl('/xielei/admin/upload'))),
                     (new Radio('是否公开', 'state', $data['state']))->set('options', [[
                         'label' => '是',
                         'value' => 1,
@@ -63,8 +62,7 @@ class Update extends Common
     }
     public function post(
         RequestFilter $input,
-        Manual $manualModel,
-        Xss $xss
+        Manual $manualModel
     ) {
         $update = array_intersect_key($input->post(), [
             'title' => '',
@@ -77,7 +75,7 @@ class Update extends Common
             'alias' => '',
         ]);
         if ($input->has('post.body')) {
-            $update['body'] = $input->post('body', '', [[$xss, 'clear']]);
+            $update['body'] = $input->post('body', '', []);
         }
         $update['update_time'] = time();
 

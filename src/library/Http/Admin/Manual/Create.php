@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Xielei\Manual\Http\Admin\Manual;
 
 use App\Xielei\Admin\Http\Common;
+use App\Xielei\Manual\Form\Simplemde;
 use App\Xielei\Manual\Model\Manual;
 use Ebcms\Router;
 use Xielei\FormBuilder\Builder;
@@ -13,7 +14,6 @@ use Xielei\FormBuilder\Field\Radio;
 use Xielei\FormBuilder\Field\Text;
 use Xielei\FormBuilder\Field\Textarea;
 use Xielei\FormBuilder\Other\Cover;
-use Xielei\FormBuilder\Other\Summernote;
 use Xielei\FormBuilder\Row;
 use Xielei\FormBuilder\Summary;
 use Xielei\RequestFilter;
@@ -28,7 +28,7 @@ class Create extends Common
             (new Row())->addCol(
                 (new Col('col-md-9'))->addItem(
                     (new Text('手册标题', 'title'))->set('help', '一般不超过20个字符')->set('required', 1),
-                    (new Summernote('手册介绍', 'body', '', $router->buildUrl('/xielei/admin/upload'))),
+                    (new Simplemde('手册介绍', 'body', '', $router->buildUrl('/xielei/admin/upload'))),
                     (new Radio('是否公开', 'state', 1))->set('options', [[
                         'label' => '是',
                         'value' => 1,

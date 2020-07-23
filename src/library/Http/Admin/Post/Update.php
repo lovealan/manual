@@ -18,7 +18,6 @@ use Xielei\FormBuilder\Field\Textarea;
 use Xielei\FormBuilder\Row;
 use Xielei\FormBuilder\Summary;
 use Xielei\RequestFilter;
-use Xielei\Xss;
 
 class Update extends Common
 {
@@ -63,17 +62,18 @@ class Update extends Common
     public function post(
         RequestFilter $input,
         Post $postModel,
-        Manual $manualModel,
-        Xss $xss
+        Manual $manualModel
     ) {
         $update = array_intersect_key($input->post(), [
             'title' => '',
-            'body' => '',
             'keywords' => '',
             'description' => '',
             'alias' => '',
             'state' => '',
         ]);
+        if ($input->has('post.body')) {
+            $update['body'] = $input->post('body', '', []);
+        }
         $update['update_time'] = time();
 
         $postModel->update($update, [

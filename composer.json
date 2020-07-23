@@ -14,7 +14,6 @@
         "xielei/admin": "^1.0",
         "xielei/form-builder": "^1.0",
         "xielei/request-filter": "^1.0",
-        "xielei/xss-clear": "^1.0",
         "xielei/pagination": "^1.0",
         "erusev/parsedown": "^1.7",
         "xielei/database": "^1.0"

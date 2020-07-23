@@ -6,6 +6,7 @@ namespace App\Xielei\Manual\Http\Home;
 
 use App\Xielei\Manual\Model\Manual as ModelManual;
 use App\Xielei\Manual\Model\Post;
+use Parsedown;
 use Xielei\RequestFilter;
 use Xielei\Template;
 
@@ -15,6 +16,7 @@ class Manual extends Common
     public function get(
         RequestFilter $input,
         Template $template,
+        Parsedown $parsedown,
         ModelManual $manualModel,
         Post $postModel
     ) {
@@ -27,6 +29,9 @@ class Manual extends Common
         ])) {
             return $this->failure('页面不存在！');
         }
+
+        $parsedown->setMarkupEscaped(true);
+        $post['body'] = $parsedown->text($manual['body']);
 
         return $this->html($template->renderFromFile($manual['tpl_manual'] ?: '/manual', [
             'manual' => $manual,
