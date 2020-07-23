@@ -31,7 +31,7 @@ class Manual extends Common
         }
 
         $parsedown->setMarkupEscaped(true);
-        $post['body'] = $parsedown->text($manual['body']);
+        $manual['body'] = $parsedown->text($manual['body']);
 
         return $this->html($template->renderFromFile($manual['tpl_manual'] ?: '/manual', [
             'manual' => $manual,
