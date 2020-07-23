@@ -20,7 +20,7 @@ class PowerBy implements MiddlewareInterface
         if ($response->getStatusCode() == 200) {
             $insert = <<<'str'
 <center style="margin-top:15px;margin-bottom:15px;">
-<small style="color:gray;">由开源系统 <a href="https://github.com/xielei/manual" target="_blank" style="color:gray;font-weight:bold;">xielei/manual</a> 构建</small>
+<small style="color:gray;">此页面由开源系统 <a href="https://github.com/xielei/manual" target="_blank" style="color:gray;font-weight:bold;">xielei/manual</a> 构建</small>
 </center>
 str;
             $contents = str_replace('</body>', $insert . '</body>', $response->getBody());

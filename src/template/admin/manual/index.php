@@ -69,6 +69,7 @@
                 <td class="text-nowrap">
                     <a href="{:$router->buildUrl('/xielei/manual/admin/manual/update', ['id'=>$vo['id']])}">设置</a>
                     <a href="javascript:deleteItem('{$vo.id}','{$vo.title}');">删除</a>
+                    <a href="{:$router->buildUrl('/xielei/manual/home/manual', ['id'=>$vo['id']])}" target="_blank">阅读</a>
                 </td>
             </tr>
             {/foreach}
