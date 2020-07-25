@@ -5,9 +5,9 @@
         {php}$cur_id=$post['id'];{/php}
         {include /common/navbar}
     </div>
-    <div class="col-md-9">
-        <h1 class="mb-2">{$post.title}</h1>
-        <div class="text-muted mb-3 bg-light"><small>最近更新：{:date('Y-m-d H:i:s', $post['update_time'])}</small></div>
+    <div class="col-md-9 content">
+        <h1 class="mb-3">{$post.title}</h1>
+        <div class="text-muted mb-3 px-1 pb-1 border-top bg-light"><small>最近更新：{:date('Y-m-d H:i:s', $post['update_time'])}</small></div>
         {$post['body']}
     </div>
 </div>

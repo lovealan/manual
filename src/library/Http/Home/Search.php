@@ -28,13 +28,21 @@ class Search extends Common
         ])) {
             return $this->failure('页面不存在！');
         }
+        $posts = [];
 
-        $where = 'WHERE manual_id=:manual_id AND type=:type AND MATCH (title,keywords,description,body) AGAINST (:q IN NATURAL LANGUAGE MODE)';
-        $posts = $postModel->select('*',  Db::raw($where, [
-            ':manual_id' => $manual['id'],
-            ':type' => 2,
-            ':q' => $input->get('q'),
-        ]));
+        if (strlen($input->get('q', '', ['trim'])) > 1) {
+            $posts = $postModel->select('*',  [
+                'manual_id' => $input->get('manual_id'),
+                'type' => 2,
+                'state' => 1,
+                'OR' => [
+                    'title[~]' => $input->get('q', '....', ['trim']),
+                    'keywords[~]' => $input->get('q', '....', ['trim']),
+                    'description[~]' => $input->get('q', '....', ['trim']),
+                    'body[~]' => $input->get('q', '....', ['trim']),
+                ],
+            ]);
+        }
 
         $html = $template->renderFromFile('/search', [
             'posts' => $posts,
