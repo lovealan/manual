@@ -7,7 +7,6 @@ namespace App\Xielei\Manual\Http\Home;
 use App\Xielei\Manual\Model\Manual;
 use App\Xielei\Manual\Model\Post;
 use Ebcms\Config;
-use Xielei\Database\Db;
 use Xielei\RequestFilter;
 use Xielei\Template;
 
@@ -24,22 +23,26 @@ class Search extends Common
 
         if (!$manual = $manualModel->get('*', [
             'state' => 1,
-            'id' => $input->get('manual_id'),
+            'OR' => [
+                'id' => $input->get('manual_id'),
+                'alias' => $input->get('manual_id'),
+            ],
         ])) {
             return $this->failure('页面不存在！');
         }
         $posts = [];
 
-        if (strlen($input->get('q', '', ['trim'])) > 1) {
+        $q = $input->get('q', '', ['trim']);
+        if (strlen($q) > 1) {
             $posts = $postModel->select('*',  [
-                'manual_id' => $input->get('manual_id'),
+                'manual_id' => $manual['id'],
                 'type' => 2,
                 'state' => 1,
                 'OR' => [
-                    'title[~]' => $input->get('q', '....', ['trim']),
-                    'keywords[~]' => $input->get('q', '....', ['trim']),
-                    'description[~]' => $input->get('q', '....', ['trim']),
-                    'body[~]' => $input->get('q', '....', ['trim']),
+                    'title[~]' => $q,
+                    'keywords[~]' => $q,
+                    'description[~]' => $q,
+                    'body[~]' => $q,
                 ],
             ]);
         }

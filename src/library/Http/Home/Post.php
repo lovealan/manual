@@ -6,6 +6,7 @@ namespace App\Xielei\Manual\Http\Home;
 
 use App\Xielei\Manual\Model\Manual;
 use App\Xielei\Manual\Model\Post as ModelPost;
+use Ebcms\Config;
 use Parsedown;
 use Xielei\RequestFilter;
 use Xielei\Template;
@@ -17,11 +18,13 @@ class Post extends Common
         RequestFilter $input,
         Template $template,
         Parsedown $parsedown,
+        Config $config,
         Manual $manualModel,
         ModelPost $postModel
     ) {
         if (!$post = $postModel->get('*', [
             'state' => 1,
+            'type' => 2,
             'OR' => [
                 'id' => $input->get('id'),
                 'alias' => $input->get('id'),
@@ -37,7 +40,7 @@ class Post extends Common
             return $this->failure('页面不存在！');
         }
 
-        // $parsedown->setMarkupEscaped(true);
+        $parsedown->setMarkupEscaped($config->get('markdown.escaped@xielei.manual', false));
         $post['body'] = $parsedown->text($post['body']);
 
         return $this->html($template->renderFromFile($manual['tpl_post'] ?: '/post', [

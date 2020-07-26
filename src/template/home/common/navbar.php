@@ -1,5 +1,4 @@
-<form action="{:$router->buildUrl('/xielei/manual/home/search')}" method="GET">
-    <input type="hidden" name="manual_id" value="{$manual.id}">
+<form action="{:$router->buildUrl('/xielei/manual/home/search', ['manual_id'=>$manual['alias']?:$manual['id']])}" method="GET">
     <div class="input-group mb-3">
         <input type="text" name="q" value="{:$input->get('q')}" class="form-control" placeholder="请输入搜索词" aria-label="请输入搜索词" aria-describedby="search_btn">
         <div class="input-group-append">
