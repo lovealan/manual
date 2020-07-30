@@ -6,25 +6,6 @@ $manuals = $manualModel->select('*', [
     ],
     'state' => 1,
 ]);
-function format_date($time)
-{
-    $t = time() - $time;
-    $f = array(
-        '31536000' => '年',
-        '2592000' => '个月',
-        '604800' => '星期',
-        '86400' => '天',
-        '3600' => '小时',
-        '60' => '分钟',
-        '1' => '秒'
-    );
-    foreach ($f as $k => $v) {
-        $c = $c = floor($t / intval($k));
-        if (0 != $c) {
-            return $c . $v . '前';
-        }
-    }
-}
 ?>
 <div class="my-4 d-inline-block display-4 font-weight-bold text-secondary text-monospace">手册中心</div>
 <div class="row row-cols-1 row-cols-md-4 row-cols-sm-3 row-cols-xs-2">
