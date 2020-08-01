@@ -76,5 +76,5 @@
         </tbody>
     </table>
 </div>
-<a href="{:$router->buildUrl('/xielei/manual/admin/manual/create')}" class="btn btn-sm btn-primary">创建手册</a>
+<a href="{:$router->buildUrl('/xielei/manual/admin/manual/create')}" class="btn btn-primary">创建手册</a>
 {include /common/footer}

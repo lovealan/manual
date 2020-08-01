@@ -11,9 +11,11 @@
         {$manual.body}
     </div>
 </div>
+{if $config->get('site.openslide@xielei.manual', 0)}
 <script>
     $(document).ready(function() {
         $("details").attr("open", "open");
     });
 </script>
+{/if}
 {include /common/footer}

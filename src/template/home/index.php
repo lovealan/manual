@@ -8,18 +8,26 @@ $manuals = $manualModel->select('*', [
 ]);
 ?>
 <div class="my-4 d-inline-block display-4 font-weight-bold text-secondary text-monospace">手册中心</div>
-<div class="row row-cols-1 row-cols-md-4 row-cols-sm-3 row-cols-xs-2">
+<div class="row row-cols-1 row-cols-md-2">
     {foreach $manuals as $vo}
     <div class="col mb-4">
-        <div class="card mb-3 h-100 shadow-sm">
-            <img src="{$vo['cover']}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{$vo.title}</h5>
-                <p class="card-text">{:mb_substr(strip_tags($vo['body']), 0, 200)}</p>
-            </div>
-            <div class="card-footer">
-                <a href="{:$router->buildUrl('/xielei/manual/home/manual',['id'=>$vo['alias']?:$vo['id']])}" class="float-right">阅读</a>
-                <small class="text-muted">{:format_date($vo['update_time'])}</small>
+        <div class="card h-100">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    {if $vo['cover']}
+                    <img src="{$vo.cover}" class="card-img p-2" alt="...">
+                    {else}
+                    <div class="text-center pt-5 display-4 text-secondary">无图</div>
+                    {/if}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted"><a href="{:$router->buildUrl('/xielei/manual/home/manual',['id'=>$vo['alias']?:$vo['id']])}" class="stretched-link text-primary" target="_blank">{$vo.title}</a></h5>
+                        <hr>
+                        <p class="card-text">{:mb_substr(strip_tags($vo['body']), 0, 50)}</p>
+                        <div class="text-secondary">最近更新：<code>{:format_date($vo['update_time'])}</code></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
