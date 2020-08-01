@@ -4,11 +4,19 @@ manual
 
 ## 安装
 
+首先创建一个工程：
+
+``` bash
+composer create-project ebcms/project
+```
+
+进入工程目录，然后安装本系统
+
 ``` cmd
 composer require xielei/manual
 ```
 
-通过composer安装后，需要配置数据库信息，新建`config/xielei/database/database.php`数据库配置文件，配置如下：
+安装完成后，需要配置数据库信息，新建`config/xielei/database/database.php`数据库配置文件，配置如下：
 
 ``` php
 // 若采用mysql数据库，则配置如下，还要导入包里面的import.sql
