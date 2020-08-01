@@ -2,10 +2,29 @@
 
 manual
 
-## Installation
+## 安装
 
 ``` cmd
 composer require xielei/manual
+```
+
+通过composer安装后，需要配置数据库信息，新建`config/xielei/database/database.php`数据库配置文件，配置如下：
+
+``` php
+// 若采用mysql数据库，则配置如下，还要导入包里面的import.sql
+return [
+  'database_name' => '...',
+  'server' => '127.0.0.1',
+  'username' => '...',
+  'password' => '...',
+];
+
+// 若采用sqlite，则配置
+return [
+  'database_type' => 'sqlite',
+  'database_file' => 'E:\WWW\ebcms\config\sqlite.db', //根据你的情况填写，包里面有sqlite.db
+  'command' => null,
+];
 ```
 
 ## 特点
