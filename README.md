@@ -27,6 +27,25 @@ return [
 ];
 ```
 
+当然，也可以动态配置，需要在`app.start@xielei.manual`上挂载如下代码：
+
+``` php
+use Ebcms\App;
+use Ebcms\Config;
+
+App::getInstance()->execute(function (
+    App $app,
+    Config $config
+) {
+    // sqlite
+    $config->set('database.database_type@xielei.database', 'sqlite');
+    $config->set('database.database_file@xielei.database', $app->getAppPath() . '/config/xielei/manual/manual.db');
+    $config->set('database.command@xielei.database', null);
+    // mysql
+    // ...
+});
+```
+
 ## 特点
 
 - markdown书写
