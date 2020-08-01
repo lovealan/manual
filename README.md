@@ -8,6 +8,16 @@ manual
 composer require xielei/manual
 ```
 
+## 特点
+
+- markdown书写
+- 搜索
+- 多级目录
+
+## 案例
+
+- [https://www.ebcms.com/manual/ebcms_framework](https://www.ebcms.com/manual/ebcms_framework)
+
 ## 自定义路由
 
 可通过下面的代码实现自定义路由，并挂载到钩子 `app.start` 上
