@@ -15,7 +15,6 @@ use Xielei\FormBuilder\Field\Text;
 use Xielei\FormBuilder\Field\Textarea;
 use Xielei\FormBuilder\Other\Cover;
 use Xielei\FormBuilder\Row;
-use Xielei\FormBuilder\Summary;
 use Xielei\RequestFilter;
 
 class Create extends Common
@@ -38,16 +37,12 @@ class Create extends Common
                     ]])->set('inline', true)
                 ),
                 (new Col('col-md-3'))->addItem(
-                    (new Cover('封面', 'cover', '', $router->buildUrl('/xielei/admin/upload'))),
-                    (new Summary('元数据设置'))->addItem(
-                        new Text('关键词', 'keywords'),
-                        new Textarea('简介', 'description')
-                    ),
-                    (new Summary('其他参数设置'))->addItem(
-                        new Text('封面模板', 'tpl_manual'),
-                        new Text('内容模板', 'tpl_post'),
-                        new Text('别名', 'alias')
-                    )
+                    (new Text('别名', 'alias'))->set('required', 1),
+                    new Cover('封面', 'cover', '', $router->buildUrl('/xielei/admin/upload')),
+                    new Text('关键词', 'keywords'),
+                    new Textarea('简介', 'description'),
+                    new Text('封面模板', 'tpl_manual'),
+                    new Text('内容模板', 'tpl_post')
                 )
             )
         );
@@ -58,6 +53,13 @@ class Create extends Common
         RequestFilter $input,
         Manual $manualModel
     ) {
+
+        if ($manualModel->get('*', [
+            'alias' => $input->post('alias'),
+        ])) {
+            return $this->failure('别名已经存在！');
+        }
+
         $manualModel->insert([
             'title' => $input->post('title'),
             'body' => $input->post('body', '', []),

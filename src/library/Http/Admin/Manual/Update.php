@@ -16,7 +16,6 @@ use Xielei\FormBuilder\Field\Text;
 use Xielei\FormBuilder\Field\Textarea;
 use Xielei\FormBuilder\Other\Cover;
 use Xielei\FormBuilder\Row;
-use Xielei\FormBuilder\Summary;
 use Xielei\RequestFilter;
 
 class Update extends Common
@@ -45,16 +44,12 @@ class Update extends Common
                     ]])->set('inline', true)
                 ),
                 (new Col('col-md-3'))->addItem(
-                    (new Cover('封面', 'cover', $data['cover'], $router->buildUrl('/xielei/admin/upload'))),
-                    (new Summary('元数据设置'))->addItem(
-                        new Text('关键词', 'keywords', $data['keywords']),
-                        new Textarea('简介', 'description', $data['description'])
-                    ),
-                    (new Summary('其他参数设置'))->addItem(
-                        new Text('栏目默认模板', 'tpl_manual', $data['tpl_manual']),
-                        new Text('内容默认模板', 'tpl_post', $data['tpl_post']),
-                        new Text('别名', 'alias', $data['alias'])
-                    )
+                    (new Text('别名', 'alias', $data['alias']))->set('required', 1),
+                    new Cover('封面', 'cover', $data['cover'], $router->buildUrl('/xielei/admin/upload')),
+                    new Text('关键词', 'keywords', $data['keywords']),
+                    new Textarea('简介', 'description', $data['description']),
+                    new Text('栏目默认模板', 'tpl_manual', $data['tpl_manual']),
+                    new Text('内容默认模板', 'tpl_post', $data['tpl_post'])
                 )
             )
         );
@@ -74,6 +69,15 @@ class Update extends Common
             'tpl_post' => '',
             'alias' => '',
         ]);
+
+        if (isset($update['alias'])) {
+            if ($manualModel->get('*', [
+                'alias' => $input->post('alias'),
+            ])) {
+                return $this->failure('别名已经存在！');
+            }
+        }
+
         if ($input->has('post.body')) {
             $update['body'] = $input->post('body', '', []);
         }
