@@ -72,6 +72,7 @@ class Update extends Common
 
         if (isset($update['alias'])) {
             if ($manualModel->get('*', [
+                'id[!]' => $input->post('id', 0, ['intval']),
                 'alias' => $input->post('alias'),
             ])) {
                 return $this->failure('别名已经存在！');
