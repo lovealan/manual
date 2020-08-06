@@ -39,7 +39,6 @@ class Simplemde implements ItemInterface
         class="form-control"
         id="field_{:md5($name)}"
         name="{$name}"
-        rows="{$rows}"
         {if isset($pattern) && $pattern}pattern="{$pattern}"{/if}
         {if isset($title) && $title}title="{$title}"{/if}
         placeholder="{$placeholder??''}"
@@ -54,6 +53,11 @@ class Simplemde implements ItemInterface
     <small id="help_{:md5($name)}" class="form-text text-muted">{$help}</small>
     {/if}
 </div>
+<style>
+.CodeMirror {
+    height: 350px;
+}
+</style>
 <script>
     new SimpleMDE({
         element: document.getElementById("field_{:md5($name)}"),
