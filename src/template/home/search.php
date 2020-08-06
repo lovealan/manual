@@ -10,19 +10,21 @@
         <div class="card my-2">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a class="text-decoration-none stretched-link" href="{:$router->buildUrl('/xielei/manual/home/post', ['id'=>$vo['alias']?:$vo['id']])}">{$vo.title}</a>
+                    <a class="text-decoration-none stretched-link" href="{:$router->buildUrl('/xielei/manual/home/post', ['id'=>$vo['alias']?:$vo['id']])}">{:str_ireplace(htmlspecialchars($input->get('q')), '<strong><font color="#f00">'.htmlspecialchars($input->get('q')).'</font><strong>', htmlspecialchars($vo['title']))}</a>
                 </h5>
                 <div class="text-muted text-monospace">
-                    {:mb_substr(strip_tags($vo['body']), 0, 200)}..
+                    {:str_ireplace(htmlspecialchars($input->get('q')), '<strong><font color="#f00">'.htmlspecialchars($input->get('q')).'</font><strong>', htmlspecialchars($vo['body']))}
                 </div>
             </div>
         </div>
         {/foreach}
     </div>
 </div>
+{if $config->get('site.openslide@xielei.manual', 0)}
 <script>
     $(document).ready(function() {
         $("details").attr("open", "open");
     });
 </script>
+{/if}
 {include /common/footer}

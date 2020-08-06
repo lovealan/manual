@@ -30,22 +30,23 @@ class Search extends Common
         ])) {
             return $this->failure('页面不存在！');
         }
-        $posts = [];
 
         $q = $input->get('q', '', ['trim']);
-        if (strlen($q) > 1) {
-            $posts = $postModel->select('*',  [
-                'manual_id' => $manual['id'],
-                'type' => 2,
-                'state' => 1,
-                'OR' => [
-                    'title[~]' => $q,
-                    'keywords[~]' => $q,
-                    'description[~]' => $q,
-                    'body[~]' => $q,
-                ],
-            ]);
+        if (strlen($q) < 2) {
+            return $this->failure('请输入关键词！');
         }
+
+        $posts = $postModel->select('*',  [
+            'manual_id' => $manual['id'],
+            'type' => 2,
+            'state' => 1,
+            'OR' => [
+                'title[~]' => $q,
+                'keywords[~]' => $q,
+                'description[~]' => $q,
+                'body[~]' => $q,
+            ],
+        ]);
 
         $html = $template->renderFromFile('/search', [
             'posts' => $posts,
