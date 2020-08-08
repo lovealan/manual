@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Xielei\Manual\Http\Admin\Post;
+namespace App\Xielei\Manual\Http\Post;
 
 use App\Xielei\Admin\Http\Common;
 use App\Xielei\Manual\Model\Manual;
