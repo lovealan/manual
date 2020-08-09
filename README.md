@@ -37,31 +37,6 @@ return [
   'server' => '127.0.0.1',
   'username' => '...',
   'password' => '...',
+  'prefix' => 'prefix_',
 ];
-
-// 若采用sqlite，则配置
-return [
-  'database_type' => 'sqlite',
-  'database_file' => 'E:\WWW\ebcms\config\sqlite.db', //根据你的情况填写，包里面有sqlite.db
-  'command' => null,
-];
-```
-
-当然，也可以动态配置，需要在 `app.start@xielei.manual` 上挂载如下代码：
-
-``` php
-use Ebcms\App;
-use Ebcms\Config;
-
-App::getInstance()->execute(function (
-    App $app,
-    Config $config
-) {
-    // sqlite
-    $config->set('database.database_type@xielei.database', 'sqlite');
-    $config->set('database.database_file@xielei.database', $app->getAppPath() . '/config/xielei/manual/manual.db');
-    $config->set('database.command@xielei.database', null);
-    // mysql
-    // ...
-});
 ```
