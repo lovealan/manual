@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Xielei\Manual\Model;
 
-use Xielei\Database\Model;
-
-class Post extends Model
+class Post extends Common
 {
 
     public function getTable(): string
