@@ -1,12 +1,6 @@
 {
     "name": "xielei/manual",
     "description": "xielei manual",
-    "authors": [
-        {
-            "name": "xielei",
-            "email": "381429578@qq.com"
-        }
-    ],
     "type": "ebcms-app",
     "license": "MIT",
     "require": {
