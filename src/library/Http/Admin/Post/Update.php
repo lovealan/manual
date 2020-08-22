@@ -35,7 +35,7 @@ class Update extends Common
                 (new Col('col-md-9'))->addItem(
                     (new Hidden('id', $data['id'])),
                     (new Text('文档名称', 'title', $data['title']))->set('help', '一般不超过80个字符')->set('required', 1),
-                    (new Simplemde('文档详情', 'body', $data['body'], $router->buildUrl('/xielei/admin/upload'))),
+                    (new Simplemde('文档详情', 'body', $data['body'], $router->buildUrl('/xielei/admin/admin/upload'))),
                     (new Radio('是否公开', 'state', $data['state']))
                         ->set('options', [[
                             'label' => '是',

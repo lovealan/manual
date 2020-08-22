@@ -34,7 +34,7 @@ class Update extends Common
                 (new Col('col-md-9'))->addItem(
                     (new Hidden('id', $data['id'])),
                     (new Text('手册标题', 'title', $data['title']))->set('help', '一般不超过20个字符')->set('required', 1),
-                    (new Simplemde('手册介绍', 'body', $data['body'], $router->buildUrl('/xielei/admin/upload'))),
+                    (new Simplemde('手册介绍', 'body', $data['body'], $router->buildUrl('/xielei/admin/admin/upload'))),
                     (new Radio('是否公开', 'state', $data['state']))->set('options', [[
                         'label' => '是',
                         'value' => 1,
@@ -45,7 +45,7 @@ class Update extends Common
                 ),
                 (new Col('col-md-3'))->addItem(
                     (new Text('别名', 'alias', $data['alias']))->set('required', 1),
-                    new Cover('封面', 'cover', $data['cover'], $router->buildUrl('/xielei/admin/upload')),
+                    new Cover('封面', 'cover', $data['cover'], $router->buildUrl('/xielei/admin/admin/upload')),
                     new Text('关键词', 'keywords', $data['keywords']),
                     new Textarea('简介', 'description', $data['description']),
                     new Text('栏目默认模板', 'tpl_manual', $data['tpl_manual']),

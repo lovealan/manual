@@ -27,7 +27,7 @@ class Create extends Common
             (new Row())->addCol(
                 (new Col('col-md-9'))->addItem(
                     (new Text('手册标题', 'title'))->set('help', '一般不超过20个字符')->set('required', 1),
-                    (new Simplemde('手册介绍', 'body', '', $router->buildUrl('/xielei/admin/upload'))),
+                    (new Simplemde('手册介绍', 'body', '', $router->buildUrl('/xielei/admin/admin/upload'))),
                     (new Radio('是否公开', 'state', 1))->set('options', [[
                         'label' => '是',
                         'value' => 1,
@@ -38,7 +38,7 @@ class Create extends Common
                 ),
                 (new Col('col-md-3'))->addItem(
                     (new Text('别名', 'alias'))->set('required', 1),
-                    new Cover('封面', 'cover', '', $router->buildUrl('/xielei/admin/upload')),
+                    new Cover('封面', 'cover', '', $router->buildUrl('/xielei/admin/admin/upload')),
                     new Text('关键词', 'keywords'),
                     new Textarea('简介', 'description'),
                     new Text('封面模板', 'tpl_manual'),
