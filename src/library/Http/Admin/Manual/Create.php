@@ -63,6 +63,7 @@ class Create extends Common
         $manualModel->insert([
             'title' => $input->post('title'),
             'body' => $input->post('body', '', []),
+            'cover' => $input->post('cover'),
             'state' => $input->post('state'),
             'keywords' => $input->post('keywords'),
             'description' => $input->post('description'),
